@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fn(x) {
+        //1
+        x++ //2
+        ;(x = x - 3) && ++x //3
+        return --x //4
+      }
+
+      //Answer: A) -1
+      //Reason:
+      //    - In line#1, fn is invoked with x as 2.
+      //    - In line#2, x++ increments the value of x by one, and equates it to 3. (Since it is not asigned to any variable, the returned value of 2 is not stored anywhere.)
+      //    - In line#3, an AND operator is present. The AND operator returns FALSE as soon as it comes across a false statement without executing the command further. In this case, the first section of the AND operator states x = x-3. x-3 is equal to 3-3, which is equal to 0. This makes the statement 3 = 0, which is FALSE. Hence, it does not proceed to perform ++X, but immediately returns wit a FALSE value. HOWEVER, as part of generating the FALSE value, x = x-3 was executed, making the value of x as 3-3 = 0.
+      //    - In line#4, --x decrements the value of x by 1 and returns the decremented value, which is equal to -1. Hence, -1 will be returned.
+    </script>
+  </body>
+</html>

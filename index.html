@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fn(str) {
+        // My code begins here...
+
+        //  WORKFLOW
+        //  --------
+        //  1) fn(str) is invoked.
+        //  2) A new variable - generateString - is declared as an instance of the 'stringGeneratorClass'.
+        //  3) The stringGenerator class has been populated with one property - value - and one function - fn - which has one optional parameter named string. Depending on whether this 'string' is defined or not, the fn function behaves differently:
+
+        //      3.1 - When string is defined: The fn function updates the 'value' property of the generateString variable (instance of stringGenerator class) by adding the value of string to the value property of the class. Space is added conditionally if the passed sting is not the first word inside the value property.The function returns the entire generateString object, so that the fn function inside it can be called again.
+
+        //      3.2 - When string is not defined: The fn function returns the 'value' property of the generateString object. This will be the final result. Once fn is called without defining string, the fn function cannot be called further.
+        //  --------
+
+        class stringGenerator {
+          constructor() {
+            this.value = ''
+          }
+
+          fn(string) {
+            if (string) {
+              var val = this.value
+              if (val != '') {
+                this.value = val + ' ' + string
+              } else {
+                this.value = string
+              }
+              return this
+            } else {
+              return this.value
+            }
+          }
+        }
+
+        var generateString = new stringGenerator()
+        var result = generateString.fn(str)
+        return result
+      }
+    </script>
+  </body>
+</html>
